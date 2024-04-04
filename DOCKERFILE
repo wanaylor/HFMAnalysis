@@ -1,0 +1,29 @@
+FROM ubuntu:22.04
+LABEL maintainer="wanaylor235"
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Use login shell to read variables from `~/.profile` (to pass dynamic created variables between RUN commands)
+SHELL ["sh", "-lc"]
+
+RUN apt update
+RUN apt-get install -y python3-pip
+
+# joblib
+RUN python3 -m pip install --no-cache-dir joblib==1.1.0
+
+# numpy
+RUN python3 -m pip install --no-cache-dir numpy==1.23.1
+
+# flask
+RUN python3 -m pip install --no-cache-dir flask==2.2.5
+
+# requests
+RUN python3 -m pip install --no-cache-dir requests==2.28.1
+
+# sklearn
+RUN python3 -m pip install --no-cache-dir scikit-learn==1.1.1
+
+
+COPY ./ /App
+WORKDIR /App
