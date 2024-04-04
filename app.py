@@ -1,4 +1,3 @@
-import sklearn
 import numpy as np
 from joblib import load
 from flask import Flask, request, jsonify
